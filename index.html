@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="color-scheme" content="light dark" />
+    <meta
+      name="description"
+      content="Your place to get started with semantic web development"
+    />
+    <title>BMI Buddy</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="container">
+      <nav>
+        <li><a href="index.html">BMI Buddy</a></li>
+        <li><a href="index.html">Calorie Compass</a></li>
+        <li><a href="index.html">Water Watcher</a></li>
+        <li><a href="index.html">Step Sankhaya</a></li>
+      </nav>
+      <hgroup>
+        <h1>BMI Buddy</h1>
+        <p>Calculate your BMI</p>
+      </hgroup>
+    </header>
+    <main class="container">
+      <p>Set your weight, Height and gender to see Your BMI</p>
+      <section>
+        <input type="number" id="weight" placeholder="Weight in Kgs" required />
+        <input type="number" id="height" placeholder="Height in Cms" required />
+        <select id="gender">
+          <option value="male">Male</option>
+          <option value="female">Female</option>
+        </select>
+        <button id="calculateBtn">Calculate Your BMI</button>
+      </section>
+      <section>
+        <p id="bmiResult"></p>
+      </section>
+    </main>
+    <footer class="container neog-footer">
+      <small>
+        go from zero to hero at full stack development with
+        <a href="https://neog.camp">neog.camp</a>
+      </small>
+    </footer>
+    <script>
+      const calculateBtn = document.getElementById("calculateBtn");
+
+      function calculateBmi() {
+        const weightElement = document.getElementById("weight");
+        const heightElement = document.getElementById("height");
+        const genderElement = document.getElementById("gender");
+        const resultElement = document.getElementById("bmiResult");
+
+        const weight = parseFloat(weightElement.value);
+        const height = parseFloat(heightElement.value) / 100;
+        const gender = genderElement.value;
+        if (weight <= 0 || height <= 0 || weight == "" || height == "") {
+          resultElement.innerText = "Please enter valid weight and height.";
+          return;
+        }
+        const bmi = weight / (height * height);
+        resultElement.innerText = `BMI: ${bmi.toFixed(2)}`;
+      }
+      calculateBtn.addEventListener("click", calculateBmi);
+    </script>
+  </body>
+</html>
